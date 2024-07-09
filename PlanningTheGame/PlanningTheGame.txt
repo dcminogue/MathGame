@@ -1,0 +1,88 @@
+Task 1: Extract Nouns for Classes
+
+Nouns
+
+1: Players
+2: Questions
+3: Answers
+4: Numbers  
+5: Turns  
+6: Lives
+7: Scores
+8: End of game
+
+Task 2: Write their roles
+What is the role for each class?
+
+Instruction
+Write out a brief paragraph describing the role that class will play in your app.
+
+Remember that objects are important for two things:
+
+State: Storing data describing themselves (variables)
+Behavior: Defining actions that can be performed on them (methods)
+Instruction
+Write down the methods for each class while also speaking to the following points:
+
+What information is relevant to each class?
+What will they need in order to be initialized?
+What public methods will be defined on them?
+Furthermore:
+
+Which class will contain the game loop (where each instance of the loop is the other players turn)?
+Which class should manage who the current_player is?
+Which class(es) will contain user I/O and which will not have any?
+
+Players Class:
+Role: This class represents each player in the game, keeping track of their lives and scores.
+Responsibilities:
+Variables: name, lives, score.
+Methods:
+**init**(name): Initializes the player with a given name, setting lives to 3 and score to 0.
+decrement_life(): Decreases the player's lives when a question is answered incorrectly.
+update_score(): Updates the player's score after answering correctly.
+get_name(): Returns the player's name.
+get_lives(): Returns the current number of lives the player has.
+get_score(): Returns the player's current score.
+Additional Method (End-of-Game Check):
+is_alive(): Checks if the player is still alive (has lives remaining). Returns True if lives > 0, otherwise False.
+
+Questions Class:
+Role: Responsible for generating math questions. It stores:
+Variables: num1, num2
+Methods: **init**() to initialize with two random numbers, generate_question() to produce a new math question, and check_answer() to verify if an answer is correct.
+Initialization generates two random numbers.
+Public methods include generate_question() and check_answer().
+
+Numbers Class (abstract concept):
+Role: Not explicitly represented as a class but relevant for generating random numbers within the Questions class.
+
+Turns Class:
+Role: Manages whose turn it is to answer a question. It stores:
+Variables: current_player
+Methods: **init**() to initialize with the starting player, next_turn() to switch to the next player's turn.
+Initialization requires the starting player.
+Public methods include get_current_player() and next_turn().
+
+Lives Class:
+Role: Represents the lives each player has. It's managed within the Players class.
+
+Scores Class:
+Role: Represents the scores each player has. It's also managed within the Players class.
+
+Game Loop:
+
+MathGame Class:
+Role: Orchestrates the entire game, including managing players, questions, turns, and determining when the game ends.
+Responsibilities:
+Initializes instances of Players, Questions, and Turns.
+Controls the game loop where players take turns answering questions.
+Checks after each turn if a player has lost all lives (Players.is_alive()).
+Announces the winner and displays the final scores when the game ends.
+Manages user input and output related to the game flow.
+
+Managing Current Player:
+The Turns class manages who the current player is through its methods like get_current_player() and next_turn().
+
+User I/O:
+The MathGame class will handle user input and output, displaying questions, receiving answers, and announcing results. Other classes (Players, Questions, Turns) should primarily handle game state and logic without directly interacting with user I/O.
